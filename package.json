@@ -1,0 +1,39 @@
+{
+  "name": "watch-win",
+  "version": "0.1.0",
+  "description": "Directory tree watch for Windows",
+  "homepage": "https://github.com/RaveNoX/watch-win",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RaveNoX/watch-win.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RaveNoX/watch-win/issues"
+  },
+  "engines": {
+    "node": ">= 0.8"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "files": [
+    "index.js",    
+    "native/WatchWin.dll",
+    "native/WatchWin.pdb"
+  ],  
+  "author": "Artur Kraev <ravenox@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "edge": "^5.0.0",
+    "lodash": "^4.6.1"
+  },
+  "keywords": [
+    "watch",
+    "watcher",
+    "files",
+    "directory",
+    "folder",
+    "windows"
+  ]
+}
