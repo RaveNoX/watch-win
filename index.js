@@ -40,7 +40,7 @@ function Watcher(options) {
     }
     else {
       self.emit('raw', data);
-      self.emit(data.type, data.path);
+      self.emit(data.type, data.path, data.oldPath);
     }
 
     callback();

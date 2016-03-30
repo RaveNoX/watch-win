@@ -22,7 +22,7 @@ namespace WatchWin
             if (callback == null)
                 throw new ArgumentNullException(nameof(callback));
 
-            if(watchOptions == null)
+            if (watchOptions == null)
                 throw new ArgumentNullException(nameof(watchOptions));
 
             _callback = callback;
@@ -41,14 +41,14 @@ namespace WatchWin
             _watcher.Changed += WatcherOnChanged;
             _watcher.Created += WatcherOnChanged;
             _watcher.Deleted += WatcherOnChanged;
-            _watcher.Renamed += WatcherOnChanged;
+            _watcher.Renamed += WatcherOnRenamed;
             _watcher.Error += WatcherOnError;
         }
 
         public void Start()
         {
-            if(_disposed) return;
-            if(_watcher.EnableRaisingEvents) return;
+            if (_disposed) return;
+            if (_watcher.EnableRaisingEvents) return;
 
             _watcher.EnableRaisingEvents = true;
         }
@@ -72,7 +72,19 @@ namespace WatchWin
             });
         }
 
-        public Guid Id { get; } = Guid.NewGuid();        
+        private void WatcherOnRenamed(object sender, RenamedEventArgs e)
+        {
+            _callback(new
+            {
+                type = e.ChangeType.ToString().ToLowerInvariant(),
+                path = e.FullPath,
+                name = e.Name,
+                oldPath = e.OldFullPath,
+                oldName = e.OldName
+            });
+        }
+
+        public Guid Id { get; } = Guid.NewGuid();
 
         public void Dispose()
         {
