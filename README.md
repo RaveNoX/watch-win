@@ -1,4 +1,6 @@
-# Watch-Win [![NPM](https://nodei.co/npm/watch-win.png)](https://nodei.co/npm/watch-win/)
+# Watch-Win 
+
+[![NPM](https://nodei.co/npm/watch-win.png)](https://nodei.co/npm/watch-win/)
 
 Native directory tree watcher for [Node.js](http://nodejs.org/) on Windows 
 
@@ -37,12 +39,23 @@ watcher.close(); // destroy watcher
 
 ### Events
 
-* *raw* - RAW event emmited by native watcher.
-* *changed* - The change of a file or folder. The types of changes include: changes to size, attributes, security settings, last write, and last access time.
-* *created* - The creation of a file or folder.
-* *deleted* - The deletion of a file or folder.
-* *renamed* - The renaming of a file or folder.
-* *error* - Native worker emits error.
+* *raw* - RAW event emmited by native watcher. Takes `info` argument like this object: 
+
+```js
+{ 
+  type: 'renamed',
+  path: '<path to dir>/test.js',
+  name: 'test.js',
+  oldPath: '<path to dir>/old/test.js',
+  name: 'test.js'
+}
+```
+
+* *changed* - The change of a file or folder. The types of changes include: changes to size, attributes, security settings, last write, and last access time. Takes `path` argument.
+* *created* - The creation of a file or folder. Takes `path` argument.
+* *deleted* - The deletion of a file or folder. Takes `path` argument.
+* *renamed* - The renaming of a file or folder. Takes `path`, `oldPath` arguments.
+* *error* - Native worker emits error. Takes `error` argument
 
 
 ## License
