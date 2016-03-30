@@ -11,3 +11,7 @@ watcher.on('renamed', function(path, oldPath){
 watcher.on('changed', function(path){
   console.log('change: ' + path);
 });
+
+watcher.on('raw', function(info){
+  console.log('raw: ', info);
+});
